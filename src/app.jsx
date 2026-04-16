@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 const services = [
   {
     icon: "🤖",
+    image: "/Chartbotai.jpg",
     title: "Custom Chatbots",
     desc: "Deploy intelligent chatbots tailored to your brand voice, trained on your data, live 24/7.",
     color: "#1e40af",
@@ -10,6 +11,7 @@ const services = [
   },
   {
     icon: "🧠",
+    image: "/customGPT.jpg",
     title: "Custom GPTs",
     desc: "Purpose-built AI assistants that know your business inside out — no generic responses.",
     color: "#0d9488",
@@ -17,6 +19,7 @@ const services = [
   },
   {
     icon: "☁️",
+    image: "/MicroAI.jpg",
     title: "Microsoft AI Foundry",
     desc: "Enterprise-grade AI deployment on Azure infrastructure, secure and scalable for teams of any size.",
     color: "#0369a1",
@@ -24,6 +27,7 @@ const services = [
   },
   {
     icon: "✈️",
+    image: "/copilot.jpg",
     title: "Co-Pilot Agents",
     desc: "AI that works alongside your team — automating repetitive tasks and amplifying productivity.",
     color: "#0891b2",
@@ -31,6 +35,7 @@ const services = [
   },
   {
     icon: "⚡",
+    image: "/AgenticAI.jpg",
     title: "Agentic AI",
     desc: "Fully autonomous agents that research, decide, and act — completing complex multi-step workflows.",
     color: "#4338ca",
@@ -83,7 +88,7 @@ export default function SonlineAI() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f8fafc", color: "#0f172a", minHeight: "100vh", overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f0f7ff", color: "#0f172a", minHeight: "100vh", overflowX: "hidden" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -119,13 +124,15 @@ export default function SonlineAI() {
 
       {/* NAV */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: "#ffffff", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "all 0.3s ease", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none" }}>
-        <img src="/logo.jpg" alt="Logo" style={{ height: 130, width: "auto", borderRadius: "6px", objectFit: "contain" }} />
-        <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="nav-links">
-          {["Services", "About", "Process", "Contact"].map(n => (
-            <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>
-          ))}
+        <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "6px", objectFit: "contain" }} />
+        <div style={{ display: "flex", gap: 40, alignItems: "center" }}>
+          <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="nav-links">
+            {["Services", "About", "Process", "Contact"].map(n => (
+              <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>
+            ))}
+          </div>
+          <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14 }}>Get Started</button>
         </div>
-        <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14 }}>Get Started</button>
       </nav>
 
       {/* HERO */}
@@ -134,8 +141,8 @@ export default function SonlineAI() {
         <div style={{ position: "absolute", top: "10%", right: "5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,175,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "15%", left: "2%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle,rgba(6,182,212,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-        <div className="hero-grid" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", width: "100%", maxWidth: 1200, margin: "0 auto", gap: 40 }}>
-          <div style={{ maxWidth: 800 }}>
+        <div className="hero-grid" style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%", maxWidth: 1200, margin: "0 auto", gap: 60 }}>
+          <div style={{ flex: 1, textAlign: "left" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#dbeafe", borderRadius: 50, padding: "6px 16px", marginBottom: 24 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1e40af", animation: "pulse-ring 1.5s ease-out infinite" }} />
               <span style={{ fontSize: 13, color: "#1e40af", fontWeight: 600 }}>Smart AI. Deployed Your Way.</span>
@@ -146,19 +153,19 @@ export default function SonlineAI() {
             <p className="hero-sub" style={{ fontSize: 18, color: "#475569", lineHeight: 1.7, margin: "24px 0 36px", fontWeight: 400 }}>
               Whether you <strong>hate AI</strong>, <strong>fear it</strong>, or <strong>absolutely love it</strong> — we meet you where you are and deploy AI that actually makes sense for you.
             </p>
-            <div className="hero-cta" style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
+            <div className="hero-cta" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               <a href="#services"><button className="cta-btn" style={{ fontSize: 16 }}>Explore Our Services</button></a>
               <a href="#contact"><button className="cta-btn-outline">Book a Free Call</button></a>
             </div>
-
           </div>
-
-
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src="/home.jpg" alt="AI Technology" style={{ width: "100%", maxWidth: 540, borderRadius: 20, boxShadow: "0 20px 60px rgba(30,64,175,0.15)", objectFit: "cover" }} />
+          </div>
         </div>
       </section>
 
       {/* AI SENTIMENT SECTION */}
-      <section id="about" style={{ padding: "80px 5%", background: "white" }}>
+      <section id="about" style={{ padding: "80px 5%", background: "#f0f7ff" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40" }}>
             Where do <em style={{ fontStyle: "normal", color: "#1a6fd4" }}>you</em> stand with AI?
@@ -185,7 +192,7 @@ export default function SonlineAI() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" style={{ padding: "90px 5%", background: "#f8fafd" }}>
+      <section id="services" style={{ padding: "90px 5%", background: "#f0f7ff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: "#1a6fd4", letterSpacing: 2, textTransform: "uppercase" }}>What We Build</span>
@@ -195,13 +202,28 @@ export default function SonlineAI() {
           <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 24 }}>
             {services.map((s, i) => (
               <div key={i} className="service-card" onMouseEnter={() => setHoveredService(i)} onMouseLeave={() => setHoveredService(null)}
-                style={{ background: "white", borderRadius: 20, padding: "32px 28px", border: `2px solid ${hoveredService === i ? s.color : "transparent"}`, boxShadow: "0 4px 20px rgba(0,0,0,0.06)", position: "relative", overflow: "hidden" }}>
-                <div style={{ width: 56, height: 56, borderRadius: 16, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>{s.icon}</div>
-                <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0d1b40", marginBottom: 10 }}>{s.title}</h3>
-                <p style={{ fontSize: 15, color: "#5a6585", lineHeight: 1.7 }}>{s.desc}</p>
-                <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: s.color, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
-                  Learn more <span>→</span>
-                </div>
+                style={{ background: "white", borderRadius: 20, padding: s.image ? "0" : "32px 28px", border: `2px solid ${hoveredService === i ? s.color : "transparent"}`, boxShadow: "0 4px 20px rgba(0,0,0,0.06)", position: "relative", overflow: "hidden" }}>
+                {s.image ? (
+                  <>
+                    <img src={s.image} alt={s.title} style={{ width: "100%", height: 200, objectFit: "cover", borderRadius: "18px 18px 0 0" }} />
+                    <div style={{ padding: "24px 28px 32px" }}>
+                      <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0d1b40", marginBottom: 10 }}>{s.title}</h3>
+                      <p style={{ fontSize: 15, color: "#5a6585", lineHeight: 1.7 }}>{s.desc}</p>
+                      <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: s.color, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+                        Learn more <span>→</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div style={{ width: 56, height: 56, borderRadius: 16, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>{s.icon}</div>
+                    <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0d1b40", marginBottom: 10 }}>{s.title}</h3>
+                    <p style={{ fontSize: 15, color: "#5a6585", lineHeight: 1.7 }}>{s.desc}</p>
+                    <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: s.color, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
+                      Learn more <span>→</span>
+                    </div>
+                  </>
+                )}
                 {hoveredService === i && <div style={{ position: "absolute", top: 0, right: 0, width: 4, height: "100%", background: s.color, borderRadius: "0 20px 20px 0" }} />}
               </div>
             ))}
@@ -210,7 +232,7 @@ export default function SonlineAI() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" style={{ padding: "90px 5%", background: "white" }}>
+      <section id="process" style={{ padding: "90px 5%", background: "#f0f7ff" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: "#0f6e56", letterSpacing: 2, textTransform: "uppercase" }}>How It Works</span>
           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", marginTop: 10, marginBottom: 50 }}>Simple. Fast. Deployed.</h2>
@@ -247,7 +269,7 @@ export default function SonlineAI() {
       </section>
 
       {/* CTA */}
-      <section id="contact" style={{ padding: "100px 5%", background: "#f8fafd", textAlign: "center" }}>
+      <section id="contact" style={{ padding: "100px 5%", background: "#f0f7ff", textAlign: "center" }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <div style={{ fontSize: 48, marginBottom: 20 }}>🚀</div>
           <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>Ready to get <span style={{ color: "#1a6fd4" }}>sonline.ai</span> up and running?</h2>
@@ -266,7 +288,7 @@ export default function SonlineAI() {
       <footer style={{ background: "#0f172a", color: "rgba(255,255,255,0.7)", padding: "50px 5% 30px" }}>
         <div className="footer-cols" style={{ display: "flex", justifyContent: "space-between", gap: 40, maxWidth: 1200, margin: "0 auto", paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
           <div style={{ maxWidth: 280 }}>
-            <img src="/logo.jpg" alt="Logo" style={{ height: 130, width: "auto", borderRadius: "8px", objectFit: "contain", marginBottom: 14 }} />
+            <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "8px", objectFit: "contain", marginBottom: 14 }} />
             <p style={{ fontSize: 14, lineHeight: 1.7 }}>Smart AI. Deployed Your Way. We make AI accessible for every business, regardless of where you stand on the AI spectrum.</p>
           </div>
           {[

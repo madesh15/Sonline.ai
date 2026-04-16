@@ -118,7 +118,7 @@ export default function SonlineAI() {
       `}</style>
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: scrolled ? "rgba(255,255,255,0.95)" : "transparent", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "all 0.3s ease", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: "#ffffff", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "all 0.3s ease", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none" }}>
         <img src="/logo.jpg" alt="Logo" style={{ height: 130, width: "auto", borderRadius: "6px", objectFit: "contain" }} />
         <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="nav-links">
           {["Services", "About", "Process", "Contact"].map(n => (

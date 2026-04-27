@@ -75,17 +75,151 @@ function AnimatedCounter({ target, suffix = "" }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+const accomplishFeatures = [
+  {
+    title: "Intelligent",
+    desc: "Advanced AI understanding of your complex task requirements.",
+  },
+  {
+    title: "Automated",
+    desc: "Seamlessly connects to your favorite tools and platforms.",
+  },
+  {
+    title: "Secure",
+    desc: "Your data is always encrypted and protected by enterprise-grade security.",
+  },
+];
+
+function AccomplishPage({ onBack }) {
+  const [hoveredFeature, setHoveredFeature] = useState(null);
+  const [hoveredBtn, setHoveredBtn] = useState(null);
+
+  return (
+    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f8fafc", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+        @keyframes accomplishSlideIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes accomplishFadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes gentleFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .accomplish-feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .accomplish-feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(30,64,175,0.15); }
+        .accomplish-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .accomplish-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(30,64,175,0.35); }
+        .accomplish-outline-btn { transition: all 0.2s ease; }
+        .accomplish-outline-btn:hover { background: #1e40af !important; color: white !important; border-color: #1e40af !important; }
+      `}</style>
+
+      {/* TOP BAR */}
+      <div style={{ background: "linear-gradient(135deg, #0f172a, #1e293b)", padding: "12px 5%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={onBack}>
+          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 18 }}>←</span>
+          <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 500 }}>Back to Home</span>
+        </div>
+        <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, fontWeight: 500 }}>Sonline.ai LLC</span>
+      </div>
+
+      {/* MAIN CONTENT */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "60px 5% 40px", background: "linear-gradient(180deg, #f0f7ff 0%, #f8fafc 50%, #f0f7ff 100%)", position: "relative", overflow: "hidden" }}>
+        {/* BG Decorations */}
+        <div style={{ position: "absolute", top: "5%", left: "10%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,64,175,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "10%", right: "8%", width: 350, height: 350, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,148,136,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+        {/* Logo */}
+        <div style={{ animation: "accomplishFadeIn 0.6s ease forwards", marginBottom: 32 }}>
+          <img src="/logo.jpg" alt="Sonline Logo" style={{ height: 64, width: "auto", borderRadius: 12, objectFit: "contain", boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }} />
+        </div>
+
+        {/* Heading */}
+        <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0f172a", textAlign: "center", lineHeight: 1.2, animation: "accomplishSlideIn 0.7s ease forwards", marginBottom: 16 }}>
+          Accomplish more with <span style={{ color: "#1079cfd5" }}>Sonline</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{ fontSize: 17, color: "#64748b", textAlign: "center", maxWidth: 600, lineHeight: 1.8, animation: "accomplishSlideIn 0.7s ease 0.15s forwards", opacity: 0, animationFillMode: "forwards", marginBottom: 40 }}>
+          Accomplish more with less effort using Sonline.ai. Streamline your workflows, automate repetitive tasks, and unlock smarter decision-making with powerful AI-driven solutions designed to boost productivity and efficiency.
+        </p>
+
+        {/* ACTION BUTTONS */}
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "center", animation: "accomplishSlideIn 0.7s ease 0.3s forwards", opacity: 0, animationFillMode: "forwards", marginBottom: 20 }}>
+          <button
+            className="accomplish-btn"
+            style={{ background: "linear-gradient(135deg, #1e40af, #1e3a8a)", color: "white", border: "none", padding: "14px 36px", borderRadius: 50, fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "'Sora', sans-serif", display: "flex", alignItems: "center", gap: 8 }}
+          >
+            Get Started <span style={{ fontSize: 18 }}>→</span>
+          </button>
+          <button
+            className="accomplish-outline-btn"
+            style={{ background: "transparent", color: "#475569", border: "none", padding: "14px 28px", borderRadius: 50, fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "'Sora', sans-serif" }}
+          >
+            Try Free
+          </button>
+        </div>
+
+
+
+        {/* FEATURE CARDS */}
+        <div style={{ display: "flex", gap: 24, flexWrap: "nowrap", justifyContent: "center", maxWidth: 900, width: "100%", animation: "accomplishSlideIn 0.7s ease 0.5s forwards", opacity: 0, animationFillMode: "forwards" }}>
+          {accomplishFeatures.map((f, i) => (
+            <div
+              key={i}
+              className="accomplish-feature-card"
+              onMouseEnter={() => setHoveredFeature(i)}
+              onMouseLeave={() => setHoveredFeature(null)}
+              style={{
+                flex: 1,
+                background: "white",
+                borderRadius: 20,
+                padding: "32px 28px",
+                textAlign: "center",
+                border: hoveredFeature === i ? "2px solid #1e40af" : "2px solid #e2e8f0",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+              }}
+            >
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{f.title}</h3>
+              <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7 }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div style={{ background: "#f1f5f9", borderTop: "1px solid #e2e8f0", padding: "20px 5%", textAlign: "center" }}>
+        <p style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>© 2026 Sonline.ai LLC. All rights reserved.</p>
+      </div>
+    </div>
+  );
+}
+
 export default function SonlineAI() {
   const [activeSentiment, setActiveSentiment] = useState(null);
   const [hoveredService, setHoveredService] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredHero, setHoveredHero] = useState(false);
+  const [currentPage, setCurrentPage] = useState("landing");
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.dropdown-container')) {
+        setServicesDropdownOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
+
+  if (currentPage === "accomplish") {
+    return <AccomplishPage onBack={() => setCurrentPage("landing")} />;
+  }
 
   return (
     <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f0f7ff", color: "#0f172a", minHeight: "100vh", overflowX: "hidden" }}>
@@ -117,9 +251,25 @@ export default function SonlineAI() {
           .hero-grid { flex-direction:column !important; }
           .services-grid { grid-template-columns:1fr !important; }
           .stats-row { flex-direction:column; gap:20px !important; }
-          .sentiment-row { flex-wrap:wrap !important; }
+          .sentiment-container { flex-direction:column !important; text-align:center !important; gap:30px !important; }
+          .sentiment-row { justifyContent:center !important; }
+          .sentiment-btn { width: 100% !important; }
           .footer-cols { flex-direction:column !important; }
         }
+        .dropdown-container { position:relative; }
+        .dropdown-menu { 
+          position:absolute; top:110%; left:0; width:180px; 
+          background:white; border-radius:12px; padding:8px; 
+          box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.04);
+          opacity: 0; transform: translateY(10px); pointer-events: none;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001; 
+        }
+        .dropdown-menu.visible { opacity:1; transform:translateY(0); pointer-events:all; }
+        .dropdown-item { 
+          display:block; padding:10px 14px; color:#475569; text-decoration:none; 
+          font-size:14px; font-weight:500; border-radius:8px; transition: all 0.2s;
+        }
+        .dropdown-item:hover { background:#f1f5f9; color:#1e40af; transform:translateX(4px); }
       `}</style>
 
       {/* NAV */}
@@ -127,11 +277,29 @@ export default function SonlineAI() {
         <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "6px", objectFit: "contain" }} />
         <div style={{ display: "flex", gap: 40, alignItems: "center" }}>
           <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="nav-links">
-            {["Services", "About", "Process", "Contact"].map(n => (
-              <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>
+            {["AI Services", "About", "Process", "Contact"].map(n => (
+              n === "AI Services" ? (
+                <div key={n} className="dropdown-container">
+                  <a href="#" className="nav-link"
+                    onClick={(e) => { e.preventDefault(); setServicesDropdownOpen(!servicesDropdownOpen); }}
+                    style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+                  >
+                    {n} <span style={{ fontSize: 9, transform: servicesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
+                  </a>
+                  <div className={`dropdown-menu ${servicesDropdownOpen ? "visible" : ""}`}>
+                    {["SupportIQ", "Policy AI", "Voter AI"].map(item => (
+                      <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`} className="dropdown-item">
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>
+              )
             ))}
           </div>
-          <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14 }}>Get Started</button>
+          <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14 }} onClick={() => setCurrentPage("accomplish")}>Get Started</button>
         </div>
       </nav>
 
@@ -159,35 +327,58 @@ export default function SonlineAI() {
             </div>
           </div>
           <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <img src="/home.jpg" alt="AI Technology" style={{ width: "100%", maxWidth: 540, borderRadius: 20, boxShadow: "0 20px 60px rgba(30,64,175,0.15)", objectFit: "cover" }} />
+            <img
+              src="/home.jpg"
+              alt="AI Technology"
+              onMouseEnter={() => setHoveredHero(true)}
+              onMouseLeave={() => setHoveredHero(false)}
+              style={{
+                width: "100%",
+                maxWidth: 540,
+                borderRadius: 20,
+                objectFit: "cover",
+                border: hoveredHero ? "3px solid #1e40af" : "3px solid transparent",
+                boxShadow: hoveredHero
+                  ? "0 24px 64px rgba(30,64,175,0.3), 0 0 0 4px rgba(30,64,175,0.1)"
+                  : "0 20px 60px rgba(30,64,175,0.15)",
+                transform: hoveredHero ? "translateY(-8px) scale(1.02)" : "translateY(0) scale(1)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease",
+                cursor: "pointer",
+              }}
+            />
           </div>
         </div>
       </section>
 
       {/* AI SENTIMENT SECTION */}
-      <section id="about" style={{ padding: "80px 5%", background: "#f0f7ff" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40" }}>
-            Where do <em style={{ fontStyle: "normal", color: "#1a6fd4" }}>you</em> stand with AI?
-          </h2>
-          <p style={{ fontSize: 17, color: "#5a6585", margin: "16px 0 48px", lineHeight: 1.7 }}>
-            No judgment. We work with every type — and we've got a solution for all of you.
-          </p>
-          <div className="sentiment-row" style={{ display: "flex", gap: 20, justifyContent: "center" }}>
-            {aiSentiments.map((s, i) => (
-              <button key={i} className={`sentiment-btn${activeSentiment === i ? " active" : ""}`} onClick={() => setActiveSentiment(activeSentiment === i ? null : i)}
-                style={{ background: activeSentiment === i ? "#e6f1fb" : "#f8fafd", border: activeSentiment === i ? "2px solid #1a6fd4" : "2px solid transparent", borderRadius: 20, padding: "20px 22px", textAlign: "center", width: 150 }}>
-                <div style={{ fontSize: 36, marginBottom: 8 }}>{s.emoji}</div>
-                <div style={{ fontWeight: 700, fontSize: 14, color: "#0d1b40" }}>{s.label}</div>
-              </button>
-            ))}
+      <section id="about" style={{ padding: "100px 5%", background: "#f0f7ff" }}>
+        <div className="sentiment-container" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", gap: 60, textAlign: "left" }}>
+          <div style={{ flex: 1 }}>
+            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>
+              Where do <em style={{ fontStyle: "normal", color: "#1a6fd4" }}>you</em> stand with AI?
+            </h2>
+            <p style={{ fontSize: 17, color: "#5a6585", marginTop: 20, lineHeight: 1.7 }}>
+              No judgment. We work with every type — and we've got a solution for all of you.
+            </p>
           </div>
-          {activeSentiment !== null && (
-            <div style={{ marginTop: 28, padding: "20px 28px", background: "#e6f1fb", borderRadius: 16, display: "inline-block", animation: "slideIn 0.3s ease" }}>
-              <p style={{ fontSize: 16, color: "#1a4f96", fontWeight: 500 }}>{aiSentiments[activeSentiment].desc}</p>
-              <p style={{ fontSize: 14, color: "#5a6585", marginTop: 8 }}>We have the right AI solution for you. <span style={{ color: "#1a6fd4", fontWeight: 600, cursor: "pointer" }}>Let's talk →</span></p>
+          <div style={{ flex: 1.4 }}>
+            <div className="sentiment-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "flex-start" }}>
+              {aiSentiments.map((s, i) => (
+                <button key={i} className={`sentiment-btn${activeSentiment === i ? " active" : ""}`} onClick={() => setActiveSentiment(activeSentiment === i ? null : i)}
+                  style={{ background: activeSentiment === i ? "#e6f1fb" : "#f8fafd", border: activeSentiment === i ? "2px solid #1a6fd4" : "2px solid transparent", borderRadius: 16, padding: "18px 20px", textAlign: "center", width: "calc(33.33% - 8px)", minWidth: 140, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: "#0d1b40" }}>{s.label}</div>
+                </button>
+              ))}
             </div>
-          )}
+            {activeSentiment !== null && (
+              <div style={{ marginTop: 20, padding: "24px", background: "#e6f1fb", borderRadius: 20, width: "100%", animation: "slideIn 0.3s ease", border: "1px solid rgba(26,111,212,0.1)" }}>
+                <p style={{ fontSize: 16, color: "#1a4f96", fontWeight: 600 }}>{aiSentiments[activeSentiment].desc}</p>
+                <div style={{ fontSize: 14, color: "#5a6585", marginTop: 10, display: "flex", alignItems: "center", gap: 4 }}>
+                  We have the right AI solution for you. <span style={{ color: "#1a6fd4", fontWeight: 700, cursor: "pointer", textDecoration: "underline" }}>Let's talk →</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -233,7 +424,7 @@ export default function SonlineAI() {
 
       {/* PROCESS */}
       <section id="process" style={{ padding: "90px 5%", background: "#f0f7ff" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "left" }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: "#0f6e56", letterSpacing: 2, textTransform: "uppercase" }}>How It Works</span>
           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", marginTop: 10, marginBottom: 50 }}>Simple. Fast. Deployed.</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 10, position: "relative" }}>
@@ -272,12 +463,12 @@ export default function SonlineAI() {
       <section id="contact" style={{ padding: "100px 5%", background: "#f0f7ff", textAlign: "center" }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <div style={{ fontSize: 48, marginBottom: 20 }}>🚀</div>
-          <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>Ready to get <span style={{ color: "#1a6fd4" }}>sonline.ai</span> up and running?</h2>
+          <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>Ready to get <span style={{ color: "#1a6fd4" }}>sonline</span> up and running?</h2>
           <p style={{ fontSize: 18, color: "#5a6585", margin: "20px 0 40px", lineHeight: 1.7 }}>
             Let's list your basic AI services and start deploying smart AI that works your way — no jargon, no fluff, just results.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#contact"><button className="cta-btn" style={{ fontSize: 17, padding: "16px 40px" }}>Start for Free</button></a>
+            <button className="cta-btn" style={{ fontSize: 17, padding: "16px 40px" }} onClick={() => setCurrentPage("accomplish")}>Start for Free</button>
             <a href="#contact"><button className="cta-btn-outline" style={{ fontSize: 16 }}>Schedule Demo</button></a>
           </div>
           <p style={{ fontSize: 13, color: "#aab0c0", marginTop: 24 }}>No commitment required · Setup in 48 hours · Cancel anytime</p>
@@ -302,7 +493,7 @@ export default function SonlineAI() {
           ))}
         </div>
         <div style={{ maxWidth: 1200, margin: "24px auto 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span style={{ fontSize: 13 }}>© 2026 sonline.ai · All rights reserved</span>
+          <span style={{ fontSize: 13 }}>© 2026 sonline.ai LLC · All rights reserved</span>
           <span style={{ fontSize: 13 }}>Smart AI. Deployed Your Way. 🤖</span>
         </div>
       </footer>

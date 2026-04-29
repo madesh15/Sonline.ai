@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 const services = [
   {
@@ -90,12 +91,12 @@ const accomplishFeatures = [
   },
 ];
 
-function AccomplishPage({ onBack }) {
+function AccomplishPage({ onBack, darkMode, setDarkMode }) {
   const [hoveredFeature, setHoveredFeature] = useState(null);
   const [hoveredBtn, setHoveredBtn] = useState(null);
 
   return (
-    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f8fafc", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "var(--bg-primary)", color: "var(--text-primary)", minHeight: "100vh", display: "flex", flexDirection: "column", transition: "background 0.3s ease" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
         @keyframes accomplishSlideIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
@@ -108,19 +109,57 @@ function AccomplishPage({ onBack }) {
         .accomplish-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(30,64,175,0.35); }
         .accomplish-outline-btn { transition: all 0.2s ease; }
         .accomplish-outline-btn:hover { background: #1e40af !important; color: white !important; border-color: #1e40af !important; }
+        .nav-link { color: var(--text-secondary) !important; }
+        .nav-link:hover { color: var(--primary-blue) !important; }
+        .dropdown-item { color: var(--text-secondary) !important; }
+        .dropdown-item:hover { color: var(--primary-blue) !important; }
       `}</style>
 
       {/* TOP BAR */}
-      <div style={{ background: "linear-gradient(135deg, #0f172a, #1e293b)", padding: "12px 5%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ background: "var(--footer-bg)", padding: "12px 5%", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border-color)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={onBack}>
-          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 18 }}>←</span>
-          <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 500 }}>Back to Home</span>
+          <span style={{ color: "var(--text-muted)", fontSize: 18 }}>←</span>
+          <span style={{ color: "var(--text-secondary)", fontSize: 13, fontWeight: 500 }}>Back to Home</span>
         </div>
-        <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, fontWeight: 500 }}>Sonline.ai LLC</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={{
+              background: darkMode ? "#1e40af" : "#e2e8f0",
+              border: "none",
+              borderRadius: "20px",
+              width: "44px",
+              height: "24px",
+              position: "relative",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              padding: "2px",
+              display: "flex",
+              alignItems: "center"
+            }}
+            title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            <div style={{
+              width: "20px",
+              height: "20px",
+              background: "white",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              transform: darkMode ? "translateX(20px)" : "translateX(0)",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+            }}>
+              {darkMode ? <FiMoon size={12} color="#1e40af" /> : <FiSun size={12} color="#1e40af" />}
+            </div>
+          </button>
+          <span style={{ color: "var(--text-muted)", fontSize: 13, fontWeight: 500 }}>Sonline.ai LLC</span>
+        </div>
       </div>
 
       {/* MAIN CONTENT */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "60px 5% 40px", background: "linear-gradient(180deg, #f0f7ff 0%, #f8fafc 50%, #f0f7ff 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "60px 5% 40px", background: "var(--bg-primary)", position: "relative", overflow: "hidden" }}>
         {/* BG Decorations */}
         <div style={{ position: "absolute", top: "5%", left: "10%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,64,175,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "10%", right: "8%", width: 350, height: 350, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,148,136,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -131,12 +170,12 @@ function AccomplishPage({ onBack }) {
         </div>
 
         {/* Heading */}
-        <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0f172a", textAlign: "center", lineHeight: 1.2, animation: "accomplishSlideIn 0.7s ease forwards", marginBottom: 16 }}>
+        <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, letterSpacing: "-1.5px", color: "var(--text-primary)", textAlign: "center", lineHeight: 1.2, animation: "accomplishSlideIn 0.7s ease forwards", marginBottom: 16 }}>
           Accomplish more with <span style={{ color: "#1079cfd5" }}>Sonline</span>
         </h1>
 
         {/* Subtitle */}
-        <p style={{ fontSize: 17, color: "#64748b", textAlign: "center", maxWidth: 600, lineHeight: 1.8, animation: "accomplishSlideIn 0.7s ease 0.15s forwards", opacity: 0, animationFillMode: "forwards", marginBottom: 40 }}>
+        <p style={{ fontSize: 17, color: "var(--text-secondary)", textAlign: "center", maxWidth: 600, lineHeight: 1.8, animation: "accomplishSlideIn 0.7s ease 0.15s forwards", opacity: 0, animationFillMode: "forwards", marginBottom: 40 }}>
           Accomplish more with less effort using Sonline.ai. Streamline your workflows, automate repetitive tasks, and unlock smarter decision-making with powerful AI-driven solutions designed to boost productivity and efficiency.
         </p>
 
@@ -150,7 +189,7 @@ function AccomplishPage({ onBack }) {
           </button>
           <button
             className="accomplish-outline-btn"
-            style={{ background: "transparent", color: "#475569", border: "none", padding: "14px 28px", borderRadius: 50, fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "'Sora', sans-serif" }}
+            style={{ background: "transparent", color: "var(--text-secondary)", border: "1px solid var(--border-color)", padding: "14px 28px", borderRadius: 50, fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: "'Sora', sans-serif" }}
           >
             Try Free
           </button>
@@ -168,24 +207,24 @@ function AccomplishPage({ onBack }) {
               onMouseLeave={() => setHoveredFeature(null)}
               style={{
                 flex: 1,
-                background: "white",
+                background: "var(--card-bg)",
                 borderRadius: 20,
                 padding: "32px 28px",
                 textAlign: "center",
-                border: hoveredFeature === i ? "2px solid #1e40af" : "2px solid #e2e8f0",
+                border: hoveredFeature === i ? "2px solid #1e40af" : "2px solid var(--border-color)",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
               }}
             >
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{f.title}</h3>
-              <p style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7 }}>{f.desc}</p>
+              <h3 style={{ fontSize: 17, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>{f.title}</h3>
+              <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7 }}>{f.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* FOOTER */}
-      <div style={{ background: "#f1f5f9", borderTop: "1px solid #e2e8f0", padding: "20px 5%", textAlign: "center" }}>
-        <p style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>© 2026 Sonline.ai LLC. All rights reserved.</p>
+      <div style={{ background: "var(--bg-secondary)", borderTop: "1px solid var(--border-color)", padding: "20px 5%", textAlign: "center" }}>
+        <p style={{ fontSize: 13, color: "var(--text-muted)", fontWeight: 500 }}>© 2026 Sonline.ai LLC. All rights reserved.</p>
       </div>
     </div>
   );
@@ -199,6 +238,15 @@ export default function SonlineAI() {
   const [hoveredHero, setHoveredHero] = useState(false);
   const [currentPage, setCurrentPage] = useState("landing");
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("darkMode");
+    return saved ? JSON.parse(saved) : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -218,11 +266,11 @@ export default function SonlineAI() {
   }, []);
 
   if (currentPage === "accomplish") {
-    return <AccomplishPage onBack={() => setCurrentPage("landing")} />;
+    return <AccomplishPage onBack={() => setCurrentPage("landing")} darkMode={darkMode} setDarkMode={setDarkMode} />;
   }
 
   return (
-    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "#f0f7ff", color: "#0f172a", minHeight: "100vh", overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Sora', 'Segoe UI', sans-serif", background: "var(--bg-primary)", color: "var(--text-primary)", minHeight: "100vh", overflowX: "hidden", transition: "background 0.3s ease" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -273,38 +321,72 @@ export default function SonlineAI() {
       `}</style>
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: "#ffffff", backdropFilter: scrolled ? "blur(12px)" : "none", transition: "all 0.3s ease", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none" }}>
-        <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "6px", objectFit: "contain" }} />
-        <div style={{ display: "flex", gap: 40, alignItems: "center" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", height: 70, display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--nav-bg)", backdropFilter: "blur(12px)", transition: "all 0.3s ease", boxShadow: scrolled ? "0 2px 20px var(--border-color)" : "none", borderBottom: `1px solid ${scrolled ? 'var(--border-color)' : 'transparent'}` }}>
+        <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "6px", objectFit: "contain", filter: darkMode ? "brightness(0.9) contrast(1.1)" : "none" }} />
+        <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
           <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="nav-links">
             {["AI Services", "About", "Process", "Contact"].map(n => (
               n === "AI Services" ? (
                 <div key={n} className="dropdown-container">
                   <a href="#" className="nav-link"
                     onClick={(e) => { e.preventDefault(); setServicesDropdownOpen(!servicesDropdownOpen); }}
-                    style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+                    style={{ display: 'flex', alignItems: 'center', gap: 6, color: "var(--text-secondary)" }}
                   >
                     {n} <span style={{ fontSize: 9, transform: servicesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
                   </a>
-                  <div className={`dropdown-menu ${servicesDropdownOpen ? "visible" : ""}`}>
+                  <div className={`dropdown-menu ${servicesDropdownOpen ? "visible" : ""}`} style={{ background: "var(--bg-secondary)", borderColor: "var(--border-color)" }}>
                     {["SupportIQ", "Policy AI", "Voter AI"].map(item => (
-                      <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`} className="dropdown-item">
+                      <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`} className="dropdown-item" style={{ color: "var(--text-secondary)" }}>
                         {item}
                       </a>
                     ))}
                   </div>
                 </div>
               ) : (
-                <a key={n} href={`#${n.toLowerCase()}`} className="nav-link">{n}</a>
+                <a key={n} href={`#${n.toLowerCase()}`} className="nav-link" style={{ color: "var(--text-secondary)" }}>{n}</a>
               )
             ))}
           </div>
+
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={{
+              background: darkMode ? "#1e40af" : "#e2e8f0",
+              border: "none",
+              borderRadius: "20px",
+              width: "48px",
+              height: "26px",
+              position: "relative",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              padding: "3px",
+              display: "flex",
+              alignItems: "center"
+            }}
+            title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            <div style={{
+              width: "20px",
+              height: "20px",
+              background: "white",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              transform: darkMode ? "translateX(22px)" : "translateX(0)",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+            }}>
+              {darkMode ? <FiMoon size={12} color="#1e40af" /> : <FiSun size={12} color="#1e40af" />}
+            </div>
+          </button>
+
           <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14 }} onClick={() => setCurrentPage("accomplish")}>Get Started</button>
         </div>
       </nav>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "120px 5% 80px", position: "relative", overflow: "hidden", background: "linear-gradient(135deg,#f0f7ff 0%,#e0f2fe 50%,#f0f9ff 100%)" }}>
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "120px 5% 80px", position: "relative", overflow: "hidden", background: "var(--bg-primary)" }}>
         {/* BG decoration */}
         <div style={{ position: "absolute", top: "10%", right: "5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,175,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "15%", left: "2%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle,rgba(6,182,212,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -315,10 +397,10 @@ export default function SonlineAI() {
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1e40af", animation: "pulse-ring 1.5s ease-out infinite" }} />
               <span style={{ fontSize: 13, color: "#1e40af", fontWeight: 600 }}>Smart AI. Deployed Your Way.</span>
             </div>
-            <h1 className="hero-text" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-1px", color: "#1e293b", marginBottom: 20 }}>
+            <h1 className="hero-text" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-1px", color: "var(--text-primary)", marginBottom: 20 }}>
               AI that works for your business.
             </h1>
-            <p className="hero-sub" style={{ fontSize: 18, color: "#475569", lineHeight: 1.7, margin: "24px 0 36px", fontWeight: 400 }}>
+            <p className="hero-sub" style={{ fontSize: 18, color: "var(--text-secondary)", lineHeight: 1.7, margin: "24px 0 36px", fontWeight: 400 }}>
               Whether you <strong>hate AI</strong>, <strong>fear it</strong>, or <strong>absolutely love it</strong> — we meet you where you are and deploy AI that actually makes sense for you.
             </p>
             <div className="hero-cta" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -351,13 +433,13 @@ export default function SonlineAI() {
       </section>
 
       {/* AI SENTIMENT SECTION */}
-      <section id="about" style={{ padding: "100px 5%", background: "#f0f7ff" }}>
+      <section id="about" style={{ padding: "100px 5%", background: "var(--bg-secondary)" }}>
         <div className="sentiment-container" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", gap: 60, textAlign: "left" }}>
           <div style={{ flex: 1 }}>
-            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>
+            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "var(--text-primary)", lineHeight: 1.2 }}>
               Where do <em style={{ fontStyle: "normal", color: "#1a6fd4" }}>you</em> stand with AI?
             </h2>
-            <p style={{ fontSize: 17, color: "#5a6585", marginTop: 20, lineHeight: 1.7 }}>
+            <p style={{ fontSize: 17, color: "var(--text-secondary)", marginTop: 20, lineHeight: 1.7 }}>
               No judgment. We work with every type — and we've got a solution for all of you.
             </p>
           </div>
@@ -365,15 +447,15 @@ export default function SonlineAI() {
             <div className="sentiment-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "flex-start" }}>
               {aiSentiments.map((s, i) => (
                 <button key={i} className={`sentiment-btn${activeSentiment === i ? " active" : ""}`} onClick={() => setActiveSentiment(activeSentiment === i ? null : i)}
-                  style={{ background: activeSentiment === i ? "#e6f1fb" : "#f8fafd", border: activeSentiment === i ? "2px solid #1a6fd4" : "2px solid transparent", borderRadius: 16, padding: "18px 20px", textAlign: "center", width: "calc(33.33% - 8px)", minWidth: 140, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
-                  <div style={{ fontWeight: 700, fontSize: 14, color: "#0d1b40" }}>{s.label}</div>
+                  style={{ background: activeSentiment === i ? "rgba(30,64,175,0.1)" : "var(--bg-primary)", border: activeSentiment === i ? "2px solid #1a6fd4" : "2px solid var(--border-color)", borderRadius: 16, padding: "18px 20px", textAlign: "center", width: "calc(33.33% - 8px)", minWidth: 140, boxShadow: "0 4px 12px rgba(0,0,0,0.03)" }}>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: "var(--text-primary)" }}>{s.label}</div>
                 </button>
               ))}
             </div>
             {activeSentiment !== null && (
-              <div style={{ marginTop: 20, padding: "24px", background: "#e6f1fb", borderRadius: 20, width: "100%", animation: "slideIn 0.3s ease", border: "1px solid rgba(26,111,212,0.1)" }}>
-                <p style={{ fontSize: 16, color: "#1a4f96", fontWeight: 600 }}>{aiSentiments[activeSentiment].desc}</p>
-                <div style={{ fontSize: 14, color: "#5a6585", marginTop: 10, display: "flex", alignItems: "center", gap: 4 }}>
+              <div style={{ marginTop: 20, padding: "24px", background: "var(--bg-primary)", borderRadius: 20, width: "100%", animation: "slideIn 0.3s ease", border: "1px solid var(--border-color)" }}>
+                <p style={{ fontSize: 16, color: "var(--primary-blue)", fontWeight: 600 }}>{aiSentiments[activeSentiment].desc}</p>
+                <div style={{ fontSize: 14, color: "var(--text-muted)", marginTop: 10, display: "flex", alignItems: "center", gap: 4 }}>
                   We have the right AI solution for you. <span style={{ color: "#1a6fd4", fontWeight: 700, cursor: "pointer", textDecoration: "underline" }}>Let's talk →</span>
                 </div>
               </div>
@@ -383,23 +465,23 @@ export default function SonlineAI() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" style={{ padding: "90px 5%", background: "#f0f7ff" }}>
+      <section id="services" style={{ padding: "90px 5%", background: "var(--bg-primary)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: "#1a6fd4", letterSpacing: 2, textTransform: "uppercase" }}>What We Build</span>
-            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", marginTop: 10 }}>AI Services, Built for Results</h2>
-            <p style={{ fontSize: 17, color: "#5a6585", marginTop: 14, maxWidth: 560, margin: "14px auto 0" }}>From simple chatbots to fully autonomous agents — we deploy AI that fits your exact needs and budget.</p>
+            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "var(--text-primary)", marginTop: 10 }}>AI Services, Built for Results</h2>
+            <p style={{ fontSize: 17, color: "var(--text-secondary)", marginTop: 14, maxWidth: 560, margin: "14px auto 0" }}>From simple chatbots to fully autonomous agents — we deploy AI that fits your exact needs and budget.</p>
           </div>
           <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 24 }}>
             {services.map((s, i) => (
               <div key={i} className="service-card" onMouseEnter={() => setHoveredService(i)} onMouseLeave={() => setHoveredService(null)}
-                style={{ background: "white", borderRadius: 20, padding: s.image ? "0" : "32px 28px", border: `2px solid ${hoveredService === i ? s.color : "transparent"}`, boxShadow: "0 4px 20px rgba(0,0,0,0.06)", position: "relative", overflow: "hidden" }}>
+                style={{ background: "var(--card-bg)", borderRadius: 20, padding: s.image ? "0" : "32px 28px", border: `2px solid ${hoveredService === i ? s.color : "var(--border-color)"}`, boxShadow: "0 4px 20px rgba(0,0,0,0.06)", position: "relative", overflow: "hidden" }}>
                 {s.image ? (
                   <>
                     <img src={s.image} alt={s.title} style={{ width: "100%", height: 200, objectFit: "cover", borderRadius: "18px 18px 0 0" }} />
                     <div style={{ padding: "24px 28px 32px" }}>
-                      <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0d1b40", marginBottom: 10 }}>{s.title}</h3>
-                      <p style={{ fontSize: 15, color: "#5a6585", lineHeight: 1.7 }}>{s.desc}</p>
+                      <h3 style={{ fontSize: 19, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>{s.title}</h3>
+                      <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.7 }}>{s.desc}</p>
                       <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: s.color, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                         Learn more <span>→</span>
                       </div>
@@ -407,9 +489,9 @@ export default function SonlineAI() {
                   </>
                 ) : (
                   <>
-                    <div style={{ width: 56, height: 56, borderRadius: 16, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>{s.icon}</div>
-                    <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0d1b40", marginBottom: 10 }}>{s.title}</h3>
-                    <p style={{ fontSize: 15, color: "#5a6585", lineHeight: 1.7 }}>{s.desc}</p>
+                    <div style={{ width: 56, height: 56, borderRadius: 16, background: darkMode ? "rgba(255,255,255,0.05)" : s.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, marginBottom: 20 }}>{s.icon}</div>
+                    <h3 style={{ fontSize: 19, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>{s.title}</h3>
+                    <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.7 }}>{s.desc}</p>
                     <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: s.color, fontWeight: 600, fontSize: 14, cursor: "pointer" }}>
                       Learn more <span>→</span>
                     </div>
@@ -423,10 +505,10 @@ export default function SonlineAI() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" style={{ padding: "90px 5%", background: "#f0f7ff" }}>
+      <section id="process" style={{ padding: "90px 5%", background: "var(--bg-secondary)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "left" }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: "#0f6e56", letterSpacing: 2, textTransform: "uppercase" }}>How It Works</span>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", marginTop: 10, marginBottom: 50 }}>Simple. Fast. Deployed.</h2>
+          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, letterSpacing: "-1.5px", color: "var(--text-primary)", marginTop: 10, marginBottom: 50 }}>Simple. Fast. Deployed.</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 10, position: "relative" }}>
             {[
               { step: "01", title: "Discovery Call", desc: "We understand your business, goals, and AI comfort level.", color: "#1a6fd4" },
@@ -434,11 +516,11 @@ export default function SonlineAI() {
               { step: "03", title: "Build & Test", desc: "Rapid development with your feedback at every step.", color: "#854f0b" },
               { step: "04", title: "Deploy & Support", desc: "Go live with ongoing monitoring and continuous improvement.", color: "#534ab7" },
             ].map((p, i) => (
-              <div key={i} style={{ background: "#f8fafd", borderRadius: 20, padding: "32px 24px", textAlign: "left", position: "relative" }}>
+              <div key={i} style={{ background: "var(--bg-primary)", borderRadius: 20, padding: "32px 24px", textAlign: "left", position: "relative", border: "1px solid var(--border-color)" }}>
 
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: p.color, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 14, marginBottom: 16 }}>{p.step}</div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#0d1b40", marginBottom: 8 }}>{p.title}</h3>
-                <p style={{ fontSize: 14, color: "#5a6585", lineHeight: 1.7 }}>{p.desc}</p>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>{p.title}</h3>
+                <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7 }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -460,26 +542,28 @@ export default function SonlineAI() {
       </section>
 
       {/* CTA */}
-      <section id="contact" style={{ padding: "100px 5%", background: "#f0f7ff", textAlign: "center" }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
-          <div style={{ fontSize: 48, marginBottom: 20 }}>🚀</div>
-          <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, letterSpacing: "-1.5px", color: "#0d1b40", lineHeight: 1.2 }}>Ready to get <span style={{ color: "#1a6fd4" }}>sonline</span> up and running?</h2>
-          <p style={{ fontSize: 18, color: "#5a6585", margin: "20px 0 40px", lineHeight: 1.7 }}>
-            Let's list your basic AI services and start deploying smart AI that works your way — no jargon, no fluff, just results.
-          </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="cta-btn" style={{ fontSize: 17, padding: "16px 40px" }} onClick={() => setCurrentPage("accomplish")}>Start for Free</button>
-            <a href="#contact"><button className="cta-btn-outline" style={{ fontSize: 16 }}>Schedule Demo</button></a>
+      <section id="contact" style={{ padding: "100px 5%", background: "var(--bg-primary)" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 60, textAlign: "left", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: 300 }}>
+            <div style={{ fontSize: 48, marginBottom: 20 }}>🚀</div>
+            <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, letterSpacing: "-1.5px", color: "var(--text-primary)", lineHeight: 1.2 }}>Ready to get <span style={{ color: "#1a6fd4" }}>sonline</span> up and running?</h2>
+            <p style={{ fontSize: 18, color: "var(--text-secondary)", margin: "20px 0 0", lineHeight: 1.7 }}>
+              Let's list your basic AI services and start deploying smart AI that works your way — no jargon, no fluff, just results.
+            </p>
+            <p style={{ fontSize: 13, color: "#aab0c0", marginTop: 24 }}>No commitment required · Setup in 48 hours · Cancel anytime</p>
           </div>
-          <p style={{ fontSize: 13, color: "#aab0c0", marginTop: 24 }}>No commitment required · Setup in 48 hours · Cancel anytime</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, minWidth: 240, width: "100%", maxWidth: 300 }}>
+            <button className="cta-btn" style={{ fontSize: 17, padding: "16px 40px", width: "100%" }} onClick={() => setCurrentPage("accomplish")}>Start for Free</button>
+            <a href="#contact" style={{ textDecoration: "none", width: "100%" }}><button className="cta-btn-outline" style={{ fontSize: 16, width: "100%", padding: "16px 40px" }}>Schedule Demo</button></a>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "#0f172a", color: "rgba(255,255,255,0.7)", padding: "50px 5% 30px" }}>
+      <footer style={{ background: "var(--footer-bg)", color: "var(--text-muted)", padding: "50px 5% 30px" }}>
         <div className="footer-cols" style={{ display: "flex", justifyContent: "space-between", gap: 40, maxWidth: 1200, margin: "0 auto", paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
           <div style={{ maxWidth: 280 }}>
-            <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "8px", objectFit: "contain", marginBottom: 14 }} />
+            <img src="/logo.jpg" alt="Logo" style={{ height: 50, width: "auto", borderRadius: "8px", objectFit: "contain", marginBottom: 14, filter: darkMode ? "brightness(0.9) contrast(1.1)" : "none" }} />
             <p style={{ fontSize: 14, lineHeight: 1.7 }}>Smart AI. Deployed Your Way. We make AI accessible for every business, regardless of where you stand on the AI spectrum.</p>
           </div>
           {[
@@ -487,14 +571,18 @@ export default function SonlineAI() {
             { title: "Company", links: ["About Us", "Our Process", "Case Studies", "Blog", "Contact"] },
           ].map(col => (
             <div key={col.title}>
-              <h4 style={{ color: "white", fontWeight: 700, marginBottom: 16, fontSize: 15 }}>{col.title}</h4>
-              {col.links.map(l => <div key={l} style={{ fontSize: 14, marginBottom: 10, cursor: "pointer", transition: "color 0.2s" }}>{l}</div>)}
+              <h4 style={{ color: "var(--text-primary)", fontWeight: 700, marginBottom: 16, fontSize: 15 }}>{col.title}</h4>
+              {col.links.map(l => (
+                <div key={l} style={{ fontSize: 14, marginBottom: 10, cursor: "pointer", transition: "color 0.2s", color: "var(--text-muted)" }}>
+                  {l}
+                </div>
+              ))}
             </div>
           ))}
         </div>
         <div style={{ maxWidth: 1200, margin: "24px auto 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span style={{ fontSize: 13 }}>© 2026 sonline.ai LLC · All rights reserved</span>
-          <span style={{ fontSize: 13 }}>Smart AI. Deployed Your Way. 🤖</span>
+          <span style={{ fontSize: 13, color: "var(--text-muted)" }}>© 2026 sonline.ai LLC · All rights reserved</span>
+          <span style={{ fontSize: 13, color: "var(--text-muted)" }}>Smart AI. Deployed Your Way. 🤖</span>
         </div>
       </footer>
     </div>
